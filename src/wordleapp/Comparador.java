@@ -1,48 +1,37 @@
 package wordleapp;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Comparador {
-    private char[] objCharArrayNotHidden;
-    private char[] objCharArray;
     private char[] lecturaChar;
-    private ArrayList<Character> tc;
-    public char[] comparacion(char[] objCharArrayNotHidden, char[] lecturaChar,char[] objCharArray, ArrayList<Character> tc){
+    private char[] objCharArray;
+    private char[] intento;
+    
+    public char[] comparacion(char[] lecturaChar, char[] objCharArray) {
+        this.lecturaChar = lecturaChar;
+        this.objCharArray = objCharArray;
         
-        for (int i = 0; i < objCharArrayNotHidden.length && i < lecturaChar.length; i++) {
-            if(lecturaChar[i]==objCharArrayNotHidden[i]){
-            objCharArray[i]=lecturaChar[i];
-            
-            if(tc.contains(objCharArray[i])){
-            int index=tc.indexOf(objCharArray[i]);
-            tc.remove(index);
-            }
-            
-            }else{
-            objCharArray[i]='_';
+        for (int i = 0; i < lecturaChar.length; i++) {
+            if (objCharArray[i] == lecturaChar[i]) {
+                objCharArray[i] = '=';
+            } else if (contieneChar(objCharArray, lecturaChar[i])) {
+                objCharArray[i] = '*';
+            } else {
+                objCharArray[i] = 'X';
             }
         }
-            // checar posibles 
-            for(int i=0;i<objCharArrayNotHidden.length;i++){
-                
-                for(int j=0;j<objCharArrayNotHidden.length;j++){
-                if(lecturaChar[i]==objCharArrayNotHidden[j]){
-                    //System.out.println("Comparando "+lecturaChar[i]+" y "+objCharArrayNotHidden[j]);
-                    if(objCharArray[i]=='_'){
-                        objCharArray[i]='*';
-                    }
-                    }
-                }
-                
-                }
-                
-            
         
-        return objCharArray;
+        intento = objCharArray;
+        return intento;
     }
-    
-    public ArrayList<Character> getTecladoMod(){
-    return tc;
+
+    public static boolean contieneChar(char[] objCharArray, char c) {
+    for (char element : objCharArray) {
+        if (element == c) {
+            return true;
+        }
     }
-    
+    return false;
+}
 }
 

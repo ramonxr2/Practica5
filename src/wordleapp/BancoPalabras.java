@@ -20,7 +20,7 @@ public class BancoPalabras {
         bancoDePalabras=new ArrayList();
         
     try{
-            File banco=new File("C:\\Users\\JRamR\\OneDrive\\Desktop\\4TO SEMESTRE\\poo\\practica5Wordle\\WordleApp\\src\\wordleapp\\Palabras5letras.txt");
+            File banco=new File("src\\wordleapp\\Palabras5letras.txt");
             Scanner scanner=new Scanner(banco);
             while(scanner.hasNext()){
             String word=scanner.next();
