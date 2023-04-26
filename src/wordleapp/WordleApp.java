@@ -10,7 +10,12 @@ public class WordleApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        WordleApp wordle=new WordleApp();
+        wordle.jugar();
+    }
+    
+    public void jugar(){
+    // TODO code application logic here
         Scanner teclado=new Scanner(System.in);
         Comparador comp=new Comparador();
         Teclado tec=new Teclado();
@@ -28,9 +33,8 @@ public class WordleApp {
         banco.inicializarBanco();
         objetivo=banco.generarObjetivo();
         //solo para probar
-       // objetivo="actuo";
         //solo para probar
-        System.out.println("Objetivo antes de esconderse: "+objetivo);
+       //System.out.println("Objetivo antes de esconderse: "+objetivo);
         char[] objCharArray=objetivo.toCharArray();
         tab.generarTablero();
         //se imprime el tablero
@@ -41,8 +45,10 @@ public class WordleApp {
         tec.imprimirTeclado();
         
         do{
-            //hacer modificaciones de teclado // hacer arraylist de teclado 
+            //clear screen
             do{
+              
+           
             System.out.println("\nIngrese su intento numero: "+(cont+1));
             //tec.imprimirTeclado();
             lectura=teclado.nextLine();
@@ -61,7 +67,7 @@ public class WordleApp {
             }while(lecturaChar.length!=5 || existe==false);
             //una vez leido comparar // editar teclado y tablero
             
-            intentos.add(comp.comparacion(lecturaChar, objCharArray));
+            intentos.add(comp.comparacion2(lecturaChar, objCharArray));
             objCharArray=objetivo.toCharArray();
             String resultado=new String(intentos.get(cont));
             System.out.println("Resultado del intento: "+resultado);
@@ -86,6 +92,6 @@ public class WordleApp {
             System.out.println("Palabra correcta: "+objetivo);
         }
         
-    }
     
+    }
 }
