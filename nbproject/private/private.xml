@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/Interfaces/Teclado.java</file>
-            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/Interfaces/Letra.java</file>
-            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/TurnToString.java</file>
+            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/LectorGrafico.java</file>
+            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/InterfazGrafica/TableroHolografico.java</file>
             <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/BancoPalabras.java</file>
-            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/Interfaces/Tablero.java</file>
+            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/InterfazGrafica/ITablero.java</file>
             <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/WordleApp.java</file>
+            <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/Palabras5letras.txt</file>
             <file>file:/C:/Users/JRamR/OneDrive/Desktop/4TO%20SEMESTRE/poo/practica5Wordle/WordleApp/src/wordleapp/Comparador.java</file>
         </group>
     </open-files>

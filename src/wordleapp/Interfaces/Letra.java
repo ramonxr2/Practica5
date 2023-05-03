@@ -3,29 +3,24 @@ package wordleapp.Interfaces;
 
 public class Letra {
     private char letra;
-    private boolean existsInWord;
-    private boolean isCorrect;
-    private boolean isMisplaced;
+    private int estado;
+    private String color;
     
-    public Letra(char letra, boolean existsInWord, boolean isCorrect, boolean isMisplaced){
+    public Letra(char letra, int estado){
     this.letra=letra;
-    this.existsInWord=existsInWord;
-    this.isCorrect=isCorrect;
-    this.isMisplaced=isMisplaced;
+    this.estado=estado;
     }
     
     public void setEstado(){
     
-        if(existsInWord==false){
-        letra='X';
+        switch (estado) {
+            case 3 -> color="GRAY";
+            case 1 -> color="GREEN";
+            case 2 -> color="YELLOW";
+            case 4 -> color="WHITE";
+            default -> {
+            }
         }
-        else 
-            if(isCorrect==true){
-            letra='=';
-            }
-            else if(isMisplaced==true){
-            letra='*';
-            }
         
     }
     
@@ -43,30 +38,18 @@ public class Letra {
     return letra+"";
     }
 
-    public boolean isExistsInWord() {
-        return existsInWord;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setExistsInWord(boolean existsInWord) {
-        this.existsInWord = existsInWord;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
-    public boolean isIsCorrect() {
-        return isCorrect;
+    @Override
+    public String toString(){
+    return letra+"";
     }
-
-    public void setCorrect(boolean isCorrect) {
-        this.isCorrect = isCorrect;
-    }
-
-    public boolean isIsMisplaced() {
-        return isMisplaced;
-    }
-
-    public void setMisplaced(boolean isMisplaced) {
-        this.isMisplaced = isMisplaced;
-    }
-    
     
     
 }

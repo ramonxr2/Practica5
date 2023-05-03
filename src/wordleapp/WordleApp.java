@@ -1,9 +1,12 @@
 package wordleapp;
-import wordleapp.Interfaces.Teclado;
 import java.util.Scanner;
 import java.util.ArrayList;
-import wordleapp.Interfaces.Tablero;
-
+import java.util.Arrays;
+import wordleapp.InterfazGrafica.ITablero;
+import wordleapp.InterfazGrafica.ITeclado;
+import wordleapp.InterfazGrafica.TableroHolografico;
+import wordleapp.InterfazGrafica.TecladoHolografico;
+import wordleapp.ScribbleImports.Canvas;
 public class WordleApp {
 
     /**
@@ -18,8 +21,11 @@ public class WordleApp {
     // TODO code application logic here
         Scanner teclado=new Scanner(System.in);
         Comparador comp=new Comparador();
-        Teclado tec=new Teclado();
-        Tablero tab=new Tablero();
+        ITeclado tec=new TecladoHolografico();
+        ITablero tab=new TableroHolografico();
+        LectorGrafico lector=new LectorGrafico();
+        
+        int intentoState[]=new int[5];
         int tries=6;
         int cont=0;
         char[] lecturaChar;
@@ -34,12 +40,11 @@ public class WordleApp {
         objetivo=banco.generarObjetivo();
         //solo para probar
         //solo para probar
-       //System.out.println("Objetivo antes de esconderse: "+objetivo);
         char[] objCharArray=objetivo.toCharArray();
         tab.generarTablero();
         //se imprime el tablero
         
-        tab.imprimirTableros();
+        tab.imprimirTableros(tec.getCanvas());
         tec.imprimirReglas();
         tec.generarTeclado();
         tec.imprimirTeclado();
@@ -47,22 +52,21 @@ public class WordleApp {
         do{
             //clear screen
             do{
-              
-           
-            System.out.println("\nIngrese su intento numero: "+(cont+1));
+            
+            lector.mensaje("\nIngrese su intento numero: "+(cont+1));
             //tec.imprimirTeclado();
-            lectura=teclado.nextLine();
+            lectura=lector.lecturaPanel(tec.getCanvas());
             lectura=lectura.toLowerCase();
             lecturaChar=lectura.toCharArray();
             
             if(lecturaChar.length!=5){
-                System.out.println("Ingrese palabra de 5 letras!!!");
+                lector.mensaje("Ingrese palabra de 5 letras!!!");
             }
             
             //verificar que la palabra exista
             existe=banco.existeLaPalabra(lectura);
             if(lecturaChar.length==5 && existe==false){
-                System.out.println("La palabra no existe!!!");
+                lector.mensaje("La palabra no existe!!!");
             }
             }while(lecturaChar.length!=5 || existe==false);
             //una vez leido comparar // editar teclado y tablero
@@ -70,17 +74,19 @@ public class WordleApp {
             intentos.add(comp.comparacion2(lecturaChar, objCharArray));
             objCharArray=objetivo.toCharArray();
             String resultado=new String(intentos.get(cont));
-            System.out.println("Resultado del intento: "+resultado);
-            System.out.println("                       "+lectura);
-            //modificar el tablero y el teclado y volver a imprimir
-            tab.setIntento(intentos.get(cont), cont);
-            tec.editarTeclado(intentos.get(cont), lecturaChar);
+            intentoState=comp.getCharState();
+            //System.out.println(Arrays.toString(intentoState)); // OK si manda los estados, solo asegurar que se manden al teclado
+            //poner un setEstados en ambos
+            tec.imprimirTeclado();
+            //modificar el tablero y el teclado y volver a imprimir // mandar el charState// determinara el color
+            tab.setIntento(intentos.get(cont), cont,lecturaChar,intentoState);
+            tec.editarTeclado(intentos.get(cont), lecturaChar, intentoState);
             //imprimir teclado
-            tab.imprimirTableros();
+            tab.imprimirTableros(tec.getCanvas());
             tec.imprimirTeclado();
             
             if(lectura.equals(objetivo)){
-                System.out.println("\nPalabra adivinada!!");
+                lector.mensaje("\nPalabra adivinada!!");
                 cont=tries;
                 haGanado=true;
             }
@@ -88,10 +94,12 @@ public class WordleApp {
             cont++;
         }while(cont<tries);
         if(cont>=tries && haGanado==false){
-        System.out.println("Haz fallado.");
-            System.out.println("Palabra correcta: "+objetivo);
+        lector.mensaje("Haz fallado.");
+        lector.mensaje("Palabra correcta: "+objetivo);
         }
         
     
     }
+    
+  
 }

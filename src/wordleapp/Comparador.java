@@ -46,6 +46,7 @@ public class Comparador {
     }
 
     public int[] getCharState() {
+        //System.out.println("CHAR STATE: "+Arrays.toString(charState));
         return charState;
         //regresa el estado de cada caracter
     }
